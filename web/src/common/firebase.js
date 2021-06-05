@@ -1,4 +1,4 @@
-import * as firebase from "firebase";
+import * as fb from "firebase";
 import "firebase/auth";
 
 const config = {
@@ -10,6 +10,8 @@ const config = {
     appId: process.env.REACT_APP_APP_ID
 };
 
-firebase.default.initializeApp(config);
+const firebase = fb.default.initializeApp(config);
 
-export const auth = firebase.default.auth();
+console.log(firebase);
+
+export const auth = firebase.auth();
