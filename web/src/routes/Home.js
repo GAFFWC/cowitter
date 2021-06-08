@@ -1,4 +1,5 @@
 import { fb } from "common/firebase";
+import Cowit from "components/Cowit";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 
@@ -57,9 +58,7 @@ const Home = ({ userData }) => {
             </form>
             <div>
                 {cowits.map((cowit) => (
-                    <div key={cowit.id}>
-                        <h4>{cowit.text}</h4>
-                    </div>
+                    <Cowit key={cowit.id} cowitData={cowit} isOwner={cowit.userUid === userData.uid} />
                 ))}
             </div>
         </div>
