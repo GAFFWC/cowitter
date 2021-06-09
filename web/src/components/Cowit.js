@@ -11,6 +11,10 @@ const Cowit = ({ cowitData, isOwner }) => {
         if (deleteAgree) {
             // delete cowit
             await fb.firestore().doc(`cowits/${cowitData.id}`).delete();
+
+            if (cowitData.attachment) {
+                await fb.storage().refFromURL(cowitData.attachment).delete();
+            }
         }
     };
 
@@ -46,6 +50,7 @@ const Cowit = ({ cowitData, isOwner }) => {
             ) : (
                 <>
                     <h4>{cowitData.text}</h4>
+                    {cowitData.attachment && <img src={cowitData.attachment} width="50px" height="50px" />}
                     {isOwner && (
                         <>
                             <button onClick={toggleEditing}>Edit Cowit</button>
