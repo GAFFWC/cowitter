@@ -8,15 +8,28 @@ function App() {
     useEffect(() => {
         fb.auth().onAuthStateChanged((user) => {
             if (user) {
-                setUserData(user);
+                setUserData({
+                    displayName: user.displayName,
+                    uid: user.uid,
+                    updateProfile: (args) => user.updateProfile(args)
+                });
             }
             setInit(true);
         });
     }, []);
 
+    const refreshUser = () => {
+        const user = fb.auth().currentUser;
+        setUserData({
+            displayName: user.displayName,
+            uid: user.uid,
+            updateProfile: (args) => user.updateProfile(args)
+        });
+    };
+
     return (
         <>
-            {init ? <AppRouter isLoggedIn={Boolean(userData)} userData={userData} /> : "Initializing..."}
+            {init ? <AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userData)} userData={userData} /> : "Initializing..."}
             <footer>&copy; Cowitter {new Date().getFullYear()}</footer>
         </>
     );
