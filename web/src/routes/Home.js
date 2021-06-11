@@ -22,11 +22,7 @@ const Home = ({ userData }) => {
         fb.firestore()
             .collection("cowits")
             .onSnapshot((snapshot) => {
-                setCowits(
-                    snapshot.docs
-                        .map((doc) => ({ ...doc.data(), id: doc.id }))
-                        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                );
+                setCowits(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })).sort((a, b) => b.createdAt - a.createdAt));
             });
     }, []);
 
@@ -35,7 +31,7 @@ const Home = ({ userData }) => {
 
         const newCowit = {
             text: cowit,
-            createdAt: moment(new Date(), "YYYY-MM-DD HH:mm:ss").toString(),
+            createdAt: Date.now(),
             userUid: userData.uid
         };
 
