@@ -1,5 +1,7 @@
 import { fb } from "common/firebase";
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Cowit = ({ cowitData, isOwner }) => {
     const [editing, setEditing] = useState(false);
@@ -34,28 +36,42 @@ const Cowit = ({ cowitData, isOwner }) => {
         setNewCowit(value);
     };
     return (
-        <div>
+        <div className="cowit">
             {editing ? (
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit}>
-                                <input type="text" placeholder="Edit your cowit" value={newCowit} required={true} onChange={onChange} />
-                                <input type="submit" value="Update Cowit"></input>
+                            <form onSubmit={onSubmit} className="container cowitEdit">
+                                <input
+                                    type="text"
+                                    placeholder="Edit your cowit"
+                                    value={newCowit}
+                                    required={true}
+                                    autoFocus
+                                    onChange={onChange}
+                                    className="formInput"
+                                />
+                                <input type="submit" value="Update Cowit" className="formBtn" />
                             </form>
-                            <button onClick={toggleEditing}>Cancel</button>
+                            <span onClick={toggleEditing} className="formBtn cancelBtn">
+                                Cancel
+                            </span>
                         </>
                     )}
                 </>
             ) : (
                 <>
                     <h4>{cowitData.text}</h4>
-                    {cowitData.attachment && <img src={cowitData.attachment} width="50px" height="50px" />}
+                    {cowitData.attachment && <img src={cowitData.attachment} alt={cowitData.attachment} />}
                     {isOwner && (
-                        <>
-                            <button onClick={toggleEditing}>Edit Cowit</button>
-                            <button onClick={onDeleteClick}>Delete Cowit</button>
-                        </>
+                        <div class="nweet__actions">
+                            <span onClick={onDeleteClick}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </span>
+                            <span onClick={toggleEditing}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </span>
+                        </div>
                     )}
                 </>
             )}
