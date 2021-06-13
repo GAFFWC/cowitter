@@ -13,6 +13,8 @@ function App() {
                     uid: user.uid,
                     updateProfile: (args) => user.updateProfile(args)
                 });
+            } else {
+                setUserData(null);
             }
             setInit(true);
         });
@@ -30,7 +32,7 @@ function App() {
     return (
         <>
             {init ? <AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userData)} userData={userData} /> : "Initializing..."}
-            <footer>&copy; Cowitter {new Date().getFullYear()}</footer>
+            <center>&copy; Cowitter {new Date().getFullYear()}</center>
         </>
     );
 }
