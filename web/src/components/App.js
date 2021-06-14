@@ -18,7 +18,6 @@ function App() {
             }
             setInit(true);
         });
-        console.log("userData : ", userData);
     }, []);
 
     const refreshUser = () => {
