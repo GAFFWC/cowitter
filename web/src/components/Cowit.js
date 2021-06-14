@@ -64,7 +64,7 @@ const Cowit = ({ cowitData, isOwner }) => {
                     <h4>{cowitData.text}</h4>
                     {cowitData.attachment && <img src={cowitData.attachment} alt={cowitData.attachment} />}
                     {isOwner && (
-                        <div class="nweet__actions">
+                        <div className="cowit__actions">
                             <span onClick={onDeleteClick}>
                                 <FontAwesomeIcon icon={faTrash} />
                             </span>
