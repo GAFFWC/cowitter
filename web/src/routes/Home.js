@@ -3,6 +3,7 @@ import Cowit from "components/Cowit";
 import CowitFactory from "components/CowitFactory";
 import React, { useEffect, useState } from "react";
 const Home = ({ userData }) => {
+    console.log(userData);
     const [cowits, setCowits] = useState([]);
 
     const getCowits = async () => {
