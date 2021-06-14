@@ -31,7 +31,7 @@ form {
     width: 100%;
 }
 
-.nweet-input::placeholder {
+.cowit-input::placeholder {
     color: white;
     opacity: 0.9;
 }
@@ -80,6 +80,7 @@ form {
 }
 
 .logOut {
+    margin-bottom: 50px;
     margin-top: 50px;
 }
 
@@ -158,16 +159,16 @@ form {
     font-size: 12px;
 }
 
-/* Nweet */
+/* cowit */
 
-.nweetEdit .formBtn {
+.cowitEdit .formBtn {
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 5px;
 }
 
-.nweet {
-    margin-bottom: 20px;
+.cowit {
+    margin-bottom: 40px;
     background-color: white;
     width: 100%;
     max-width: 320px;
@@ -179,12 +180,12 @@ form {
     color: rgba(0, 0, 0, 0.8);
 }
 
-.nweet h4 {
+.cowit h4 {
     font-size: 14px;
 }
 
-.nweet img {
-    right: -10px;
+.cowit img {
+    right: -20px;
     top: 20px;
     position: absolute;
     border-radius: 50%;
@@ -193,17 +194,17 @@ form {
     margin-top: 10px;
 }
 
-.nweet__actions {
+.cowit__actions {
     position: absolute;
     right: 10px;
     top: 10px;
 }
 
-.nweet__actions span {
+.cowit__actions span {
     cursor: pointer;
 }
 
-.nweet__actions span:first-child {
+.cowit__actions span:first-child {
     margin-right: 10px;
 }
 
