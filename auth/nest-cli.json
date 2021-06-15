@@ -1,4 +1,45 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "src",
+  "projects": {
+    "kakao": {
+      "type": "library",
+      "root": "libs/kakao",
+      "entryFile": "index",
+      "sourceRoot": "libs/kakao/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/kakao/tsconfig.lib.json"
+      }
+    },
+    "google": {
+      "type": "library",
+      "root": "libs/google",
+      "entryFile": "index",
+      "sourceRoot": "libs/google/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/google/tsconfig.lib.json"
+      }
+    },
+    "decorators": {
+      "type": "library",
+      "root": "libs/decorators",
+      "entryFile": "index",
+      "sourceRoot": "libs/decorators/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/decorators/tsconfig.lib.json"
+      }
+    },
+    "models": {
+      "type": "library",
+      "root": "libs/models",
+      "entryFile": "index",
+      "sourceRoot": "libs/models/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/models/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
 }

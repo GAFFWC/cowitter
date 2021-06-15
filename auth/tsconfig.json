@@ -10,6 +10,20 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@cowitter/decorators": [
+        "libs/decorators/src"
+      ],
+      "@cowitter/decorators/*": [
+        "libs/decorators/src/*"
+      ],
+      "@cowitter/models": [
+        "libs/models/src"
+      ],
+      "@cowitter/models/*": [
+        "libs/models/src/*"
+      ]
+    }
   }
 }

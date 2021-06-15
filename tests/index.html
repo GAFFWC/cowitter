@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <a id="kakao-login-btn"></a>
+        <script type="text/javascript">
+            Kakao.init("dd831357f9878d55ce253241f2b70bb6");
+            console.log(Kakao.isInitialized());
+
+            Kakao.Auth.createLoginButton({
+                container: "#kakao-login-btn",
+                success: function (authObj) {
+                    Kakao.API.request({
+                        url: "/v2/user/me",
+                        success: function (result) {
+                            console.log(result);
+                            id = result.id;
+                            connected_at = result.connected_at;
+                            kakao_account = result.kakao_account;
+
+                            fetch("http://localhost/", { method: "post", headers: {} });
+                        },
+                        fail: function (error) {
+                            alert("login success, but failed to request user information: " + JSON.stringify(error));
+                        }
+                    });
+                },
+                fail: function (err) {
+                    alert("failed to login: " + JSON.stringify(err));
+                }
+            });
+        </script>
+    </body>
+</html>
