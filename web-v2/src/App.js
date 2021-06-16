@@ -1,9 +1,11 @@
-import KakaoLogin from "./components/Kakao";
+import LoginWithGoogle from "./components/Google";
+import LoginWithKakao from "./components/Kakao";
 
 function App() {
     return (
         <div className="App">
-            <KakaoLogin />
+            <LoginWithKakao />
+            <LoginWithGoogle />
         </div>
     );
 }
