@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const KakaoLogin = () => {
+const LoginWithKakao = () => {
     const [scriptLoaded, setScriptLoaded] = useState(false);
 
     useEffect(() => {
@@ -10,7 +11,7 @@ const KakaoLogin = () => {
         document.body.appendChild(kakaojs);
 
         kakaojs.onload = () => {
-            window.Kakao.init("dd831357f9878d55ce253241f2b70bb6");
+            window.Kakao.init(process.env.REACT_APP_KAKAO_JS_KEY);
             setScriptLoaded(true);
         };
     }, []);
@@ -18,21 +19,14 @@ const KakaoLogin = () => {
     const onKakaoLoginClick = () => {
         window.Kakao.Auth.login({
             success: (auth) => {
-                fetch("http://localhost/auth/kakao/login", {
-                    method: "post",
-                    headers: {
-                        auth: JSON.stringify(auth)
-                    }
-                })
-                    .then((r) => {
-                        console.log(r);
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                    });
+                console.log(auth);
+                axios
+                    .post("http://localhost/auth/kakao/login", auth)
+                    .then((r) => console.log(r))
+                    .catch((err) => console.error(err));
             },
             fail: (err) => {
-                alert("error!");
+                alert("error!", err);
             }
         });
     };
@@ -49,4 +43,4 @@ const KakaoLogin = () => {
     );
 };
 
-export default KakaoLogin;
+export default LoginWithKakao;
