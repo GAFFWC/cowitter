@@ -1,4 +1,7 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
+import { GoogleController } from "./google.controller";
 
-@Module({})
+@Module({
+    controllers: [GoogleController]
+})
 export class GoogleModule {}
