@@ -7,9 +7,9 @@ async function bootstrap() {
 
     app.setGlobalPrefix("auth");
 
-    app.enableCors({});
+    app.enableCors();
 
-    app.useGlobalPipes(new ValidationPipe({ transform: true, transformOptions: { enableImplicitConversion: true } }));
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
     app.use(morgan("dev"));
 
