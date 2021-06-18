@@ -9,14 +9,17 @@ const LoginWithGoogle = () => {
 
     const onGoogleLoginSuccess = (response) => {
         const {
-            profileObj: { name, imageUrl, email }
+            profileObj: { name, imageUrl, email, googleId }
         } = response;
+
+        console.log(response.profileObj);
+
         axios
-            .post("http://localhost/auth/google", { name, imageUrl, email })
+            .post("http://localhost/auth/google", { name, imageUrl, email, userId: googleId })
             .then((r) => {
                 console.log(r);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => console.error(err.response.data));
     };
 
     return (
