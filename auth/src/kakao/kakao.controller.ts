@@ -1,17 +1,19 @@
 import { JsonHeaders } from "@cowitter/decorators";
+import { User } from "@cowitter/schema";
 import { Body, Controller, Get, Headers, HttpService, InternalServerErrorException, Post, Req } from "@nestjs/common";
+import { UserService } from "src/user/user.service";
 import { KakaoAuth } from "./dto/kakao.dto";
 
 @Controller("kakao")
 export class KakaoController {
-    constructor(private readonly http: HttpService, private readonly kakaoService) {}
+    constructor(private readonly http: HttpService, private readonly userService: UserService) {}
     @Get()
     async get(@Req() req) {
         console.log(req);
     }
 
     @Post("login")
-    async post(@Body() kakaoAuth: KakaoAuth) {
+    async login(@Body() kakaoAuth: KakaoAuth) {
         console.log(kakaoAuth);
 
         const userData = await this.http
@@ -33,6 +35,26 @@ export class KakaoController {
 
         console.log(userData);
 
-        const user = 
+        const {
+            id,
+            kakao_account: { profile, email }
+        } = userData;
+
+        const user = await this.userService.getUser({ userId: id });
+
+        if (user) {
+            return user;
+        }
+
+        const newUser = new User();
+
+        newUser.userId = id;
+        newUser.name = profile.nickname;
+        newUser.email = email || null;
+        newUser.imageUrl = profile.profile_image_url || null;
+
+        const createdUser = await this.userService.createUser(newUser);
+
+        return createdUser;
     }
 }
