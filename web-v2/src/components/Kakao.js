@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const LoginWithKakao = () => {
+const LoginWithKakao = ({ login, userData, onLogin, onUserData }) => {
     const [scriptLoaded, setScriptLoaded] = useState(false);
 
     useEffect(() => {
@@ -19,10 +19,13 @@ const LoginWithKakao = () => {
     const onKakaoLoginClick = () => {
         window.Kakao.Auth.login({
             success: (auth) => {
-                console.log(auth);
                 axios
                     .post("http://localhost/auth/kakao/login", auth)
-                    .then((r) => console.log(r))
+                    .then((r) => {
+                        onUserData(r.data);
+                        console.log(userData);
+                        onLogin(true);
+                    })
                     .catch((err) => console.error(err));
             },
             fail: (err) => {
