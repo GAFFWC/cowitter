@@ -12,8 +12,6 @@ export class GoogleController {
 
         const user = await this.userService.getUser({ userId: userId });
 
-        console.log(user);
-
         if (user) {
             return user;
         }

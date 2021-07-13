@@ -14,8 +14,6 @@ export class KakaoController {
 
     @Post("login")
     async login(@Body() kakaoAuth: KakaoAuth) {
-        console.log(kakaoAuth);
-
         const userData = await this.http
             .get("https://kapi.kakao.com/v2/user/me", {
                 headers: {
@@ -32,8 +30,6 @@ export class KakaoController {
         if (!userData) {
             throw new InternalServerErrorException("Get user info failed");
         }
-
-        console.log(userData);
 
         const {
             id,
