@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
+import { setLogin, setUserData } from "../modules/user";
 
-const LoginWithGoogle = () => {
+const LoginWithGoogle = ({ login, userData, onLogin, onUserData }) => {
     const onGoogleLoginFailure = (err) => {
         console.error(err);
     };
@@ -17,9 +18,11 @@ const LoginWithGoogle = () => {
         axios
             .post("http://localhost/auth/google", { name, imageUrl, email, userId: googleId })
             .then((r) => {
-                console.log(r);
+                // console.log(r);
+                onUserData(r.data);
+                onLogin(true);
             })
-            .catch((err) => console.error(err.response.data));
+            .catch((err) => console.error(err));
     };
 
     return (
